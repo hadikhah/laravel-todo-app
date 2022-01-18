@@ -58,6 +58,7 @@
               type="password"
               class="block mt-1 w-full"
               v-model="form.password"
+              autocomplete="new-password"
           />
         </div>
 
@@ -68,6 +69,7 @@
               type="password"
               class="block mt-1 w-full"
               v-model="form.password_confirmation"
+              autocomplete="new-password"
           />
         </div>
 
