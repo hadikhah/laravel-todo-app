@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InertiaAdmin\Permission\PermissionController;
+use App\Http\Controllers\InertiaAdmin\Role\RoleController;
 use App\Http\Controllers\InertiaAdmin\User\ProfileController;
 use App\Http\Controllers\InertiaAdmin\User\UserController;
 use Illuminate\Foundation\Application;
@@ -39,7 +41,9 @@ Route::prefix("inertia")->group(function () {
         })->name('about');
 
         Route::resources([
-            'users' => UserController::class
+            'users' => UserController::class,
+            "roles" => RoleController::class,
+            "permissions" => PermissionController::class,
         ]);
 
         Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
