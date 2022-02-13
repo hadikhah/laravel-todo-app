@@ -15,7 +15,7 @@ class TodoStatus extends Model
      * @var array
      */
     protected $fillable = [
-        'titie',
+        'title',
     ];
 
     /**
