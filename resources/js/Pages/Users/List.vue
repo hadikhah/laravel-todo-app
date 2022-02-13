@@ -1,5 +1,5 @@
 <template>
-    <Head title="About us"/>
+    <Head><title>users</title></Head>
 
     <BreezeAuthenticatedLayout>
         <template #header>
@@ -36,13 +36,21 @@
                         <tbody class="bg-white divide-y">
                         <tr v-for="user in users.data" :key="user.id" class="text-gray-700">
                             <td class="px-4 py-3 text-sm">
-                                <AvatarImg :src="user.avatar_img" :alt="user.name"/>
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{ user.name }}
+                                <Link :href="route('users.show',{user:user.id})">
+                                    <AvatarImg :src="user.avatar_img" :alt="user.name"/>
+                                    {{ user.name }}
+                                </Link>
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ user.email }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <span class="flex flex-row">
+                                    <Link :href="route('users.edit',{user:user.id})">
+                                        <PencilIcon class="h-6 w-6 text-yellow-600"/>
+                                    </Link>
+                                    <!--                                                                        <TrashIcon class="h-5 w-5 text-red-500" />-->
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -61,9 +69,16 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from '@/Components/Pagination.vue';
 import AvatarImg from "@/Components/AvatarImg";
+import {Link} from "@inertiajs/inertia-vue3";
+import PencilIcon from "@heroicons/vue/outline/PencilAltIcon"
+import TrashIcon from "@heroicons/vue/solid/TrashIcon"
 
 export default {
+
     components: {
+        PencilIcon,
+        TrashIcon,
+        Link,
         AvatarImg,
         BreezeAuthenticatedLayout,
         Pagination,

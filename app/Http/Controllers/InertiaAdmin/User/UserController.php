@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $this->authorize("view-user", auth()->user());
         $users = User::query()->paginate();
-        return Inertia::render('Users/Index', compact("users"));
+        return Inertia::render('Users/List', compact("users"));
     }
 
     /**
