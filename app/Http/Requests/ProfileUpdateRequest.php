@@ -11,9 +11,10 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
-            'password' => ['nullable', 'string', 'confirmed', 'min:8'],
+            'name'       => ['required', 'string', 'max:255'],
+            'email'      => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
+            'avatar_img' => ['nullable', "mimes:png,jpg,jpeg", "max:2048"],
+            'password'   => ['nullable', 'string', 'confirmed', 'min:8'],
         ];
     }
 
@@ -24,7 +25,7 @@ class ProfileUpdateRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if (is_null($this->password )) {
+        if (is_null($this->password)) {
             $this->request->remove('password');
         }
     }
