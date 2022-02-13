@@ -1,5 +1,5 @@
 <template>
-    <img :class="`inline  w-${size?size:'10'} h-${size?size:'10'} mr-2 rounded-full`" :src="src" :alt="alt">
+    <img :class="`inline  w-${size?size:'8'} h-${size?size:'8'} mr-2 rounded-full`" :src="src" :alt="alt">
 </template>
 
 <script>
