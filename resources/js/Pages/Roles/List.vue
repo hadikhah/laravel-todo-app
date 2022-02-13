@@ -74,9 +74,7 @@ export default {
     props: {
         roles: Object,
     },
-    mounted() {
-        console.log(this.roles)
-    }
+
 }
 </script>
 

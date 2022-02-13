@@ -73,9 +73,7 @@ export default {
     props:{
         permissions:Object
     },
-    mounted() {
-        console.log(this.permissions)
-    }
+
 }
 </script>
 

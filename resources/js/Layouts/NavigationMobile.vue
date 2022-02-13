@@ -66,11 +66,15 @@
                             aria-label="submenu">
                             <li v-if="hasPermission(user,'view-role')"
                                 class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                                <a class="w-full" href="#">roles</a>
-                            </li>
+                                <BreezeNavLink :href="route('roles.index')" :active="route().current('roles.index')">
+                                    roles
+                                </BreezeNavLink>                            </li>
                             <li v-if="hasPermission(user,'view-permission')"
                                 class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                                <a class="w-full" href="#">permission</a>
+
+                                <BreezeNavLink :href="route('permissions.index')" :active="route().current('permissions.index')">
+                                    permissions
+                                </BreezeNavLink>
                             </li>
                         </ul>
                     </li>

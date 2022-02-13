@@ -33,7 +33,8 @@
                 </li>
 
 
-                <li class="relative px-6 py-3" v-if="hasPermission(user,'view-role')||hasPermission(user,'view-permission')" >
+                <li class="relative px-6 py-3"
+                    v-if="hasPermission(user,'view-role')||hasPermission(user,'view-permission')">
                     <button @click="showSecurityTabChildren = !showSecurityTabChildren"
                             class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                             aria-haspopup="true">
@@ -48,11 +49,15 @@
                         aria-label="submenu">
                         <li v-if="hasPermission(user,'view-role')"
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="#">roles</a>
+                            <BreezeNavLink :href="route('roles.index')" :active="route().current('roles.index')">
+                                roles
+                            </BreezeNavLink>
                         </li>
                         <li v-if="hasPermission(user,'view-permission')"
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="#">permissions</a>
+                            <BreezeNavLink :href="route('permissions.index')" :active="route().current('permissions.index')">
+                                permissions
+                            </BreezeNavLink>
                         </li>
                     </ul>
                 </li>

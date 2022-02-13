@@ -28,9 +28,9 @@
                     <table class="w-full whitespace-no-wrap">
                         <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
-                            <th class="px-4 py-3">image</th>
                             <th class="px-4 py-3">Name</th>
                             <th class="px-4 py-3">Email</th>
+                            <th class="px-4 py-3">actions</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y">
@@ -47,7 +47,7 @@
                             <td class="px-4 py-3 text-sm">
                                 <span class="flex flex-row">
                                     <Link :href="route('users.edit',{user:user.id})">
-                                        <PencilIcon class="h-6 w-6 text-yellow-600"/>
+                                        <PencilIcon class="h-6 w-6 text-yellow-600" title="edit"/>
                                     </Link>
                                     <!--                                                                        <TrashIcon class="h-5 w-5 text-red-500" />-->
                                 </span>
