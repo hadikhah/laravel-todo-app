@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InertiaAdmin\User\ProfileController;
+use App\Http\Controllers\InertiaAdmin\User\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,10 +20,10 @@ use Inertia\Inertia;
 Route::prefix("inertia")->group(function () {
     Route::get('/', function () {
         return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+            'canLogin'       => Route::has('login'),
+            'canRegister'    => Route::has('register'),
             'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
+            'phpVersion'     => PHP_VERSION,
         ]);
     });
 
@@ -31,14 +33,24 @@ Route::prefix("inertia")->group(function () {
 
     require __DIR__ . '/auth.php';
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth', "password.confirm")->group(function () {
         Route::get('about', function () {
             return Inertia::render('About');
         })->name('about');
 
-        Route::get('users', [\App\Http\Controllers\InertiaAdmin\UserController::class, 'index'])->name('users.index');
+        Route::resources([
+            'users' => UserController::class
+        ]);
 
-        Route::get('profile', [\App\Http\Controllers\InertiaAdmin\ProfileController::class, 'show'])->name('profile.show');
-        Route::put('profile', [\App\Http\Controllers\InertiaAdmin\ProfileController::class, 'update'])->name('profile.update');
+        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     });
+});
+
+Route::domain("{user}." . config("app.url"))->group(function () {
+    Route::get("/", [UserController::class, "show"])->middleware("password.confirm");
+});
+
+Route::get('/', function () {
+    return "hey";
 });
