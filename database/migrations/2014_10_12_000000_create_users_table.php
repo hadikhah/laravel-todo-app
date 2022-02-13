@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string("avatar_img")->nullable();
             $table->rememberToken();
+            $table->softDeletes();
+            $table->unique(["deleted_at", "email"]);
             $table->timestamps();
         });
     }
